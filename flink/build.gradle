@@ -1,0 +1,28 @@
+group 'name.jolif'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    releaseJars
+}
+
+dependencies {
+    compile 'org.apache.flink:flink-connector-kafka-0.11_2.11:1.4.0'
+    compile 'org.apache.flink:flink-streaming-java_2.11:1.4.0'
+    releaseJars 'org.apache.flink:flink-connector-kafka-0.11_2.11:1.4.0'
+}
+
+jar {
+    from configurations.releaseJars.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest {
+        attributes 'Main-Class': 'Example'
+    }
+}
+

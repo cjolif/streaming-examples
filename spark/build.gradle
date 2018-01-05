@@ -1,0 +1,23 @@
+group 'name.jolif'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'scala'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.8'
+    compile 'org.apache.spark:spark-sql-kafka-0-10_2.11:2.2.0'
+    compile 'org.apache.spark:spark-core_2.11:2.2.0'
+    compile 'org.apache.spark:spark-sql_2.11:2.2.0'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Example'
+    }
+}
